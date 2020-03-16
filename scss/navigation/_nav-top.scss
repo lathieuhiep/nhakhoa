@@ -1,0 +1,112 @@
+.main-navigation {
+  background-color: #ffffff;
+  @include box-shadow(0 3px 3px -3px rgba(0, 0, 0, 0.3));
+
+  .site-navbar {
+    position: relative;
+  }
+  button {
+    &.navbar-toggler {
+      padding: 0;
+      border: 0;
+    }
+  }
+}
+.site-logo {
+  @include flex(0 0 auto);
+
+  a {
+    display: inline-block;
+    line-height: 64px;
+    padding: 15px 0;
+  }
+}
+.site-menu {
+  @include flex(1);
+
+  ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+      position: relative;
+
+      a {
+        padding: 0 15px;
+        text-shadow: none;
+        display: block;
+
+        &:hover {
+          background-color: transparent;
+          color: $color-hover;
+        }
+      }
+      &:last-child {
+        a {
+          padding-right: 0;
+        }
+      }
+      .sub-menu {
+        min-width: 160px;
+        border-top: 1px solid $color-hover;
+        background-color: $border-color;
+        position: absolute;
+        top: 120%;
+        left: 0;
+        z-index: -1;
+        visibility: hidden;
+        opacity: 0;
+        @include transition(all 0.4s ease-out);
+
+        li {
+          padding: 8px 0;
+          display: block;
+
+          a {
+            white-space: nowrap;
+          }
+          .sub-menu {
+            left: 90%;
+            top: -1px;
+          }
+          &:hover {
+            > .sub-menu {
+              left: 100%;
+            }
+          }
+        }
+      }
+      &:hover {
+        > .sub-menu {
+          top: 100%;
+          z-index: 999;
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+}
+.icon_menu_item_mobile {
+  display: none;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 12px;
+  height: 20px;
+  font-size: 14px;
+  cursor: pointer;
+
+  &:after {
+    content: "\f078";
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    font-style: normal;
+    font-weight: 900;
+  }
+  &.icon_menu_item_mobile_active {
+    &:after {
+      content: "\f077";
+    }
+  }
+}

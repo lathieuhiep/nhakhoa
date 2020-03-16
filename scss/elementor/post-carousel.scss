@@ -1,0 +1,19 @@
+.element-post-carousel {
+  .item-post {
+    @include flexbox();
+    @include flex-direction(column);
+    @include flex(1);
+
+    .item-post_content {
+      padding: 15px;
+      border: 1px solid $border-color;
+      @include flexbox();
+      @include flex-direction(column);
+      @include flex(1);
+
+      .item-post__title {
+        @include flex(1);
+      }
+    }
+  }
+}

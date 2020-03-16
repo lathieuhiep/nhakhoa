@@ -1,0 +1,28 @@
+section {
+  &.widget {
+    &.woocommerce {
+      ul {
+        &.product_list_widget {
+          li {
+            a {
+              margin-bottom: 15px;
+              @include flexbox();
+
+              img {
+                width: 70px;
+                margin: 0 15px 0 0;
+                @include flex(0 0 auto)
+              }
+              .product-title {
+                @include flex(1);
+              }
+            }
+            .star-rating {
+              margin-bottom: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

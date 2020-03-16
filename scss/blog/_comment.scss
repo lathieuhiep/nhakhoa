@@ -1,0 +1,129 @@
+.site-comments {
+  padding: 30px 0;
+}
+.comment-reply-title,
+.comments-title {
+  position: relative;
+  font-size: 15px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  display: block;
+
+  &:after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    display: block;
+    margin-top: 5px;
+    width: 15px;
+    height: 1px;
+    background: $background-hover;
+    @include transition(all 0.4s ease-in-out);
+  }
+}
+.comment-form {
+  @include flexbox();
+  @include flex-direction(column);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+
+  .comment-notes {
+    @include order(1);
+  }
+  .comment-fields-row {
+    margin-bottom: 30px;
+  }
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    padding: 9px 22px;
+    height: auto;
+    border: 1px solid $border-color;
+    @include border-radius(0);
+  }
+  .form-comment-field {
+    margin-bottom: 30px;
+  }
+  .form-submit {
+    @include order(4);
+
+    input {
+      cursor: pointer;
+      display: inline-block;
+      width: auto;
+      padding: 9px 22px;
+      color: #000000;
+      border-color: $border-color;
+      background-color: $border-color;
+      border: none;
+      @include border-radius(3px);
+      @include transition(all 0.4s ease-in-out);
+
+      &:hover {
+        color: #ffffff;
+        border-color: $background-hover;
+        background-color: $background-hover;
+      }
+    }
+  }
+}
+.comments-area {
+  ul {
+    list-style: none;
+  }
+  .comment-list {
+    padding: 0;
+    margin: 0;
+
+    li {
+      span {
+        font-style: normal;
+      }
+      .comment-body {
+        margin: 0 0 30px;
+        @include flexbox();
+
+        .comment-author {
+          @include flex(0 0 auto);
+        }
+        .comment-meta {
+          padding-left: 30px;
+          @include flex(1);
+
+          .comment-meta-box {
+            margin-bottom: 10px;
+
+            span {
+              display: inline-block;
+
+              &.comment-metadata {
+                margin-right: 10px;
+              }
+            }
+            .name {
+              display: block;
+              font-size: 16px;
+              font-weight: 700;
+              margin-bottom: 5px;
+            }
+            a {
+              margin-right: 10px;
+
+              &:hover {
+                color: $color-hover;
+              }
+            }
+          }
+        }
+      }
+      ol {
+        &.children {
+          margin: 0;
+          padding-left: 80px;
+        }
+      }
+    }
+  }
+}

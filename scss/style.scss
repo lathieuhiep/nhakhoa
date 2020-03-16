@@ -1,0 +1,109 @@
+/*
+Theme Name: Nha Khoa
+Theme URI: http://hungkv.com/
+Author: DiepLK
+Author URI: https://www.facebook.com/lathieuhiep
+Version: 1.0.0
+Description: Nha Khoa
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: one-column, two-columns, three-columns, four-columns, right-sidebar,  theme-options
+Text Domain: nhakhoa
+*/
+
+/**
+* Table of Contents:
+*
+# General
+# WordPress Core
+# Header
+  ## Information
+# Navigation
+  ## Nav Top
+# Page
+# Sidebar
+# Blog
+  ## Single
+  ## Pagination
+  ## Comment
+# Elementor
+  ## Slider
+  ## Posts Grid
+  ## Posts Carousel
+# Woocommerce
+  ## Archive shop
+  ## Single Shop
+  ## Other Page Shop
+  ## Sidebar Shop
+  ## Quick View Product
+# Contact Form 7
+# Footer
+# Responsive
+* -----------------------------------------------------------------------------
+*/
+
+@import "variables-site/variables";
+
+/**
+# General
+-----------------------------------------------------------------------------*/
+@import "general";
+
+/* WordPress Core
+-------------------------------------------------------------- */
+@import "wp-core";
+
+/**
+# Header
+-----------------------------------------------------------------------------*/
+@import "header/header";
+
+/**
+# Navigation
+-----------------------------------------------------------------------------*/
+@import "navigation/navigation";
+
+/**
+# Page
+-----------------------------------------------------------------------------*/
+@import "page";
+
+/**
+# Sidebar
+-----------------------------------------------------------------------------*/
+@import "sidebar";
+
+/**
+# Blog
+-----------------------------------------------------------------------------*/
+@import "blog/blog";
+
+/**
+# Elementor
+-----------------------------------------------------------------------------*/
+@import "elementor/elementor";
+
+/**
+# Woocommerce
+-----------------------------------------------------------------------------*/
+@import "shop/shop";
+
+/**
+# Contact Form 7
+-----------------------------------------------------------------------------*/
+@import "cf7";
+
+/**
+# 404
+-----------------------------------------------------------------------------*/
+@import "404";
+
+/**
+# Footer
+-----------------------------------------------------------------------------*/
+@import "footer/footer";
+
+/**
+# Responsive
+-----------------------------------------------------------------------------*/
+@import "responsive";

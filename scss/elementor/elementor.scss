@@ -1,0 +1,16 @@
+.item-post__title {
+  font-size: 18px;
+  word-break: break-word;
+
+  a {
+    display: inline-block;
+  }
+}
+/* Slider */
+@import "slides";
+
+/* Posts Grid */
+@import "post-grid";
+
+/* Posts Carousel */
+@import "post-carousel";

@@ -1,0 +1,35 @@
+.btn-quick-view-product {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  color: #ffffff;
+  @include border-radius(4px);
+  background-color: $background-primary;
+  @include transition(all 0.4s ease-in-out);
+
+  &:hover {
+    color: #ffffff;
+    background-color: $background-hover;
+  }
+}
+.popup-quick-view-product {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 30;
+  background-color: rgba( 0,0,0,0.8 );
+
+  .quick-view-container {
+    position: relative;
+    top: 50%;
+    padding: 30px 15px;
+    max-width: 850px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    @include transform(translateY(-50%));
+  }
+}
