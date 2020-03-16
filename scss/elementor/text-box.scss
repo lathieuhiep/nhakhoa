@@ -1,0 +1,17 @@
+.element-text-box {
+  .icon {
+    margin-right: 15px;
+    width: 40px;
+    @include flex(0 0 auto);
+
+    i {
+      font-size: 35px;
+      color: $color-link;
+    }
+  }
+  .title {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+}

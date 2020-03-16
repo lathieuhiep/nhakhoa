@@ -84,6 +84,19 @@
         display: inline-flex;
         height: 100%;
         @include align-items(center);
+
+        &.menu-item-has-children {
+          > a {
+            &:after {
+              content: "\f078";
+              display: inline-block;
+              font-family: 'Font Awesome 5 Free';
+              font-size: 12px;
+              font-weight: 900;
+              padding-left: 10px;
+            }
+          }
+        }
       }
     }
     ul {

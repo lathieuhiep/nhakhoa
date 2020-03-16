@@ -55,7 +55,7 @@ if ( ! function_exists( 'nhakhoa_get_cart' ) ):
 
     ?>
 
-        <div class="cart-box d-flex align-items-center">
+        <div class="cart-box text-right">
             <div class="cart-customlocation">
                 <i class="fas fa-shopping-cart"></i>
 
@@ -474,3 +474,29 @@ if ( ! function_exists( 'nhakhoa_woo_before_single_product_summary_close' ) ) :
     }
 
 endif;
+
+/*
+* change sale flash text
+* Author: https://levantoan.com
+*/
+add_filter('woocommerce_sale_flash','nhakhoa_woocommerce_sale_flash', 10, 3);
+function nhakhoa_woocommerce_sale_flash($text, $post, $product){
+	ob_start();
+	$sale_price = get_post_meta( $product->get_id(), '_price', true);
+	$regular_price = get_post_meta( $product->get_id(), '_regular_price', true);
+	if (empty($regular_price) && $product->is_type( 'variable' )){
+		$available_variations = $product->get_available_variations();
+		$variation_id = $available_variations[0]['variation_id'];
+		$variation = new WC_Product_Variation( $variation_id );
+		$regular_price = $variation ->regular_price;
+		$sale_price = $variation ->sale_price;
+	}
+	$sale = ceil(( ($regular_price - $sale_price) / $regular_price ) * 100);
+	if ( !empty( $regular_price ) && !empty( $sale_price ) && $regular_price > $sale_price ) :
+		$R = floor((255*$sale)/100);
+		$G = floor((255*(100-$sale))/100);
+		$bg_style = 'background:none;background-color: #f34723;';
+		echo apply_filters( 'nhakhoa_woocommerce_sale_flash', '<span class="onsale" style="'. $bg_style .'">' . esc_html__( 'Giảm ' ) . $sale . '%</span>', $post, $product );
+	endif;
+	return ob_get_clean();
+}

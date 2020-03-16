@@ -1,6 +1,5 @@
 .main-navigation {
-  background-color: #ffffff;
-  @include box-shadow(0 3px 3px -3px rgba(0, 0, 0, 0.3));
+  background-color: $background-primary;
 
   .site-navbar {
     position: relative;
@@ -24,52 +23,66 @@
 .site-menu {
   @include flex(1);
 
+  > ul {
+    > li {
+      padding: 18px 0;
+
+      &.current-menu-item,
+      &:hover {
+        background-color: $background-hover;
+      }
+      > a {
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+    }
+  }
   ul {
     padding: 0;
     margin: 0;
 
     li {
       position: relative;
+      @include transition(all 0.4s ease-in-out);
 
       a {
-        padding: 0 15px;
+        padding: 0 20px;
+        color: #ffffff;
         text-shadow: none;
         display: block;
-
-        &:hover {
-          background-color: transparent;
-          color: $color-hover;
-        }
-      }
-      &:last-child {
-        a {
-          padding-right: 0;
-        }
       }
       .sub-menu {
-        min-width: 160px;
-        border-top: 1px solid $color-hover;
-        background-color: $border-color;
         position: absolute;
         top: 120%;
         left: 0;
+        min-width: 240px;
         z-index: -1;
         visibility: hidden;
         opacity: 0;
+        background-color: $background-second;
         @include transition(all 0.4s ease-out);
 
         li {
-          padding: 8px 0;
+          padding: 13px 0;
           display: block;
+          border-bottom: 1px solid rgba(255,255,255,0.1);
 
+          &:last-child {
+            border-bottom: none;
+          }
           a {
+            font-size: 15px;
+            text-transform: capitalize;
             white-space: nowrap;
           }
           .sub-menu {
             left: 90%;
-            top: -1px;
+            top: 0;
           }
           &:hover {
+            background-color: $background-primary;
+
             > .sub-menu {
               left: 100%;
             }

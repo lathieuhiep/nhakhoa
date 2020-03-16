@@ -53,6 +53,14 @@
         $( document ).general_owlCarousel_custom( '.site-post-slides' );
         /* End Gallery Single */
 
+        /* Start Click Show Cart View */
+        $( '.shop-cart-view .cart-customlocation, .cart-view-box__close' ).on( 'click', function () {
+
+            $(this).closest( '.shop-cart-view' ).find( '.cart-view-box-widget' ).toggleClass( 'active' );
+
+        } )
+        /* End Click Show Cart View */
+
     });
 
     $( window ).on( "load", function() {

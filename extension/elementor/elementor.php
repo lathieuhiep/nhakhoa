@@ -50,6 +50,8 @@ final class nhakhoa_plugin_elementor_widgets {
 
         $build_widgets_filename = [
             'slides',
+	        'text-box',
+	        'best-selling-products',
             'post-grid',
             'post-carousel',
             'about-text',

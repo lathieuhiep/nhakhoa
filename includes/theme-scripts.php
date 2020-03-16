@@ -16,7 +16,7 @@ if ( ! function_exists( 'nhakhoa_fonts_url' ) ) :
 			$nhakhoa_font_families = array();
 
 			if ( 'off' !== $nhakhoa_font_google ) {
-				$nhakhoa_font_families[] = 'Roboto:400,700';
+				$nhakhoa_font_families[] = 'Roboto:300,400,500,600,700';
 			}
 
 			$nhakhoa_query_args = array(
