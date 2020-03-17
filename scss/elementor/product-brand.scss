@@ -1,0 +1,96 @@
+.element-product {
+  .heading-product {
+    margin-bottom: 6px;
+    border-bottom: 2px solid $background-primary;
+
+    .title-heading {
+      font-size: 24px;
+      text-transform: uppercase;
+      margin: 0;
+      padding-left: 40px;
+      background-position: center left;
+      background-repeat: no-repeat;
+      background-size: auto;
+    }
+  }
+  .row-no-margin {
+    margin: 0;
+  }
+  .item-col-no-padding {
+    padding: 0;
+  }
+}
+.element-product-brand {
+  .list-brand {
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: $border-color;
+  }
+  .list-brand-box {
+    padding: 30px 20px;
+
+    .list-brand-item {
+      list-style: none;
+      margin: 0 -10px;
+      padding: 0;
+      @include flexbox();
+      @include flex-wrap(wrap);
+
+      .item-brand {
+        line-height: 2em;
+        padding: 0 10px;
+        margin-bottom: 8px;
+        width: 50%;
+        @include flex(0 0 auto);
+
+        a {
+          display: inline-block;
+          text-transform: capitalize;
+
+          &:before {
+            content: "\f105";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: $color-link;
+            font-size: 16px;
+            padding-right: 10px;
+          }
+        }
+      }
+    }
+    .list-link-all-brand {
+      padding-top: 20px;
+      border-top: 1px solid $border-color;
+
+      a {
+        display: inline-block;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: $color-second;
+
+        &:before {
+          content: "\f105";
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+          color: $color-link;
+          font-size: 16px;
+          padding-right: 10px;
+        }
+        &:hover {
+          color: $color-link;
+        }
+      }
+    }
+  }
+  .get-product-box {
+    .row {
+      margin: 0;
+    }
+    .item-col {
+      padding: 20px 20px 15px 20px;
+      border-width: 0 1px 1px 0;
+      border-style: solid;
+      border-color: $border-color;
+    }
+  }
+}

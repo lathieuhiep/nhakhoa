@@ -14,6 +14,9 @@
         /* Element slider */
         elementorFrontend.hooks.addAction( 'frontend/element_ready/nhakhoa-slides.default', ElementCarouselSlider );
 
+        /* Element testimonial */
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/nhakhoa-testimonial.default', ElementCarouselSlider );
+
         /* Element post carousel */
         elementorFrontend.hooks.addAction( 'frontend/element_ready/nhakhoa-post-carousel.default', ElementCarouselSlider );
 

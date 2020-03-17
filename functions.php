@@ -453,13 +453,14 @@ function nhakhoa_comment_form() {
 /* End comment */
 
 /* Start get Category check box */
-function nhakhoa_check_get_cat( $type_taxonomy ) {
+function nhakhoa_check_get_cat( $type_taxonomy, $parent = '' ) {
 
     $cat_check    =   array();
     $category     =   get_terms(
         array(
             'taxonomy'      =>  $type_taxonomy,
-            'hide_empty'    =>  false
+            'hide_empty'    =>  false,
+            'parent'        =>  $parent
         )
     );
 

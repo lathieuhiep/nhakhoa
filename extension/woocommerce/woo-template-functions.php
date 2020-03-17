@@ -500,3 +500,29 @@ function nhakhoa_woocommerce_sale_flash($text, $post, $product){
 	endif;
 	return ob_get_clean();
 }
+
+/* Custom rating */
+function nhakhoa_woo_custom_html_rating() {
+
+	global $product;
+
+	$rating_count = $product->get_rating_count();
+	$review_count = $product->get_review_count();
+	$average      = $product->get_average_rating();
+
+	if ( $rating_count > 0 ) :
+?>
+
+    <div class="woocommerce">
+        <div class="woocommerce-product-rating">
+		    <?php echo wc_get_rating_html( $average, $rating_count ); ?>
+
+            <a href="<?php the_permalink(); ?>" class="woocommerce-review-link" rel="nofollow">
+			    <?php echo esc_html( $review_count ) . ' '; esc_html_e( 'đánh giá', 'nhakhoa' ); ?>
+            </a>
+        </div>
+    </div>
+
+<?php
+    endif;
+}

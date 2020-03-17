@@ -71,6 +71,9 @@ function nhakhoa_register_front_end() {
     wp_enqueue_style( 'fontawesome-5', get_theme_file_uri( '/fonts/fontawesome/css/all.min.css' ), array(), '5.12.1' );
     /* End main Css */
 
+	/* Style 2 */
+	wp_enqueue_style( 'nhakhoa-style-2', get_theme_file_uri( '/style-2.css' ), array(), '5.12.1' );
+
 	/*  Start Style Css   */
 	wp_enqueue_style( 'nhakhoa-style', get_stylesheet_uri() );
 	/*  Start Style Css   */

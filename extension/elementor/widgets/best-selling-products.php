@@ -36,16 +36,6 @@ class nhakhoa_widget_best_selling_products extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'title',
-			[
-				'label'         =>  esc_html__( 'Tiêu đề', 'nhakhoa' ),
-				'type'          =>  Controls_Manager::TEXT,
-				'default'       =>  esc_html__( 'Bán chạy', 'nhakhoa' ),
-				'label_block'   =>  true
-			]
-		);
-
         $this->add_control(
             'select_type_product',
             [
@@ -179,17 +169,11 @@ class nhakhoa_widget_best_selling_products extends Widget_Base {
 
 	?>
 
-		<div class="element-best-selling-product woocommerce">
+		<div class="element-best-selling-product element-product">
             <div class="row">
                 <?php
                 while ( $query->have_posts() ):
                     $query->the_post();
-
-	                global $product;
-
-	                $rating_count = $product->get_rating_count();
-	                $review_count = $product->get_review_count();
-	                $average      = $product->get_average_rating();
                 ?>
 
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 item-col d-flex">
@@ -209,26 +193,11 @@ class nhakhoa_widget_best_selling_products extends Widget_Base {
 	                                </a>
 	                            </h4>
 
-		                        <?php if ( $rating_count > 0 ) : ?>
+	                            <?php
+	                            nhakhoa_woo_custom_html_rating();
 
-		                        <div class="woocommerce-product-rating">
-			                        <?php
-			                        echo wc_get_rating_html( $average, $rating_count );
-
-			                        if ( comments_open() ) :
-
-			                        ?>
-
-				                        <a href="<?php the_permalink(); ?>" class="woocommerce-review-link" rel="nofollow">
-					                        <?php echo esc_html( $review_count ) . ' '; esc_html_e( 'đánh giá', 'nhakhoa' ); ?>
-				                        </a>
-
-			                        <?php endif ?>
-		                        </div>
-
-                                <?php endif; ?>
-
-	                            <?php woocommerce_template_loop_price(); ?>
+                                woocommerce_template_loop_price();
+                                ?>
 	                        </div>
 	                    </div>
                     </div>

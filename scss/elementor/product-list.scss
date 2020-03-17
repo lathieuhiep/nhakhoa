@@ -1,0 +1,38 @@
+.element-product-list {
+  &.element-product {
+    .heading-product {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+    }
+    .item-product {
+      .item-content {
+        .price {
+          border: none;
+          margin-top: 0;
+          padding-top: 0;
+          @include align-items(flex-start);
+          @include flex-direction(column);
+        }
+      }
+    }
+  }
+  .product-list-box {
+    .item-product {
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid $border-color;
+      @include flexbox();
+
+      &:last-child {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border-bottom: 0;
+      }
+      .img-product {
+        margin-right: 10px;
+        width: 112px;
+        @include flex(0 0 auto);
+      }
+    }
+  }
+}

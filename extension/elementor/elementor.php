@@ -52,9 +52,12 @@ final class nhakhoa_plugin_elementor_widgets {
             'slides',
 	        'text-box',
 	        'best-selling-products',
+	        'product-brand',
+	        'product-list',
             'post-grid',
             'post-carousel',
             'about-text',
+	        'testimonial'
         ];
         
         foreach ( $build_widgets_filename as $widget_filename ) :

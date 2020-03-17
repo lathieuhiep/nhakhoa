@@ -5,6 +5,26 @@
   .item-post {
     margin-bottom: 30px;
 
+    .item-post__title {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.2em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+
+      a {
+        color: $color-title;
+
+        &:hover {
+          color: $color-link;
+        }
+      }
+    }
+    .date-post {
+      display: block;
+      font-size: 12px;
+      color: #adadad;
+    }
     .item-post__thumbnail {
       margin-bottom: 15px;
 

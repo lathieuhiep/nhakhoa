@@ -359,6 +359,10 @@ class nhakhoa_widget_post_grid extends Widget_Base {
                                     </a>
                                 </h2>
 
+                                <span class="date-post">
+                                    <?php echo get_the_date( 'd/m/Y' ); ?>
+                                </span>
+
                                 <?php if ( $settings['show_excerpt'] == 1 ) : ?>
 
                                     <div class="item-post__content">
