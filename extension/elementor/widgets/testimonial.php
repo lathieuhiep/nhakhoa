@@ -29,25 +29,6 @@ class nhakhoa_widget_testimonial extends Widget_Base {
 	protected function _register_controls() {
 
 		$this->start_controls_section(
-			'section_content',
-			[
-				'label' => esc_html__( 'Heading', 'nhakhoa' ),
-			]
-		);
-
-		$this->add_control(
-			'heading',
-			[
-				'label'         =>  esc_html__( 'Tiêu đề', 'nhakhoa' ),
-				'type'          =>  Controls_Manager::TEXT,
-				'default'       => 'Khách hàng đánh giá',
-				'label_block'   =>  true
-			]
-		);
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
 			'section_testimonial',
 			[
 				'label' => esc_html__( 'Testimonial', 'nhakhoa' ),
@@ -171,6 +152,41 @@ class nhakhoa_widget_testimonial extends Widget_Base {
 		$this->end_controls_section();
 		/* End Section Slides */
 
+		/* Section style post */
+		$this->start_controls_section(
+			'section_style_testimonial',
+			[
+				'label' => esc_html__( 'Color & Typography', 'nhakhoa' ),
+				'tab' => Controls_Manager::TAB_STYLE
+			]
+		);
+
+		$this->add_control(
+			'name_color',
+			[
+				'label'     =>  esc_html__( 'Name Color', 'nhakhoa' ),
+				'type'      =>  Controls_Manager::COLOR,
+				'default'   =>  '',
+				'selectors' =>  [
+					'{{WRAPPER}} .element-testimonial .element-testimonial-text ul li .name'   =>  'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'content_color',
+			[
+				'label'     =>  esc_html__( 'Content Color', 'nhakhoa' ),
+				'type'      =>  Controls_Manager::COLOR,
+				'default'   =>  '',
+				'selectors' =>  [
+					'{{WRAPPER}} .element-testimonial .element-testimonial-text ul li .item-content'   =>  'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+
 	}
 
 	protected function render() {
@@ -178,43 +194,49 @@ class nhakhoa_widget_testimonial extends Widget_Base {
 		$settings   =   $this->get_settings();
 
 		$data_settings_owl  =   [
-            'items'         =>  1,
+            'items'         =>  3,
 			'loop'          =>  ( 'yes' === $settings['loop'] ),
 			'autoplay'      =>  ( 'yes' === $settings['autoplay'] ),
 			'nav'           =>  ( 'yes' === $settings['nav'] ),
             'dots'          =>  ( 'yes' === $settings['dots'] ),
-			'margin'        =>  0,
+			'margin'        =>  15,
+            'center'        =>  true
 		];
 
 	?>
 
 		<div class="element-testimonial">
-            <h4 class="title-testimonial element-title">
-                <?php echo esc_html( $settings['heading'] ); ?>
-            </h4>
+            <?php if ( $settings['list'] ) : $i = $j = 0; ?>
 
-            <?php if ( $settings['list'] ) : ?>
+	            <div class="element-testimonial-flipster">
+		            <ul class="list-avatar">
+			            <?php foreach ( $settings['list'] as $item ) : ?>
 
-                <div class="custom-owl-carousel owl-carousel owl-theme element-box-global" data-settings-owl='<?php echo esc_attr( wp_json_encode( $data_settings_owl ) ); ?>'>
-                    <?php foreach ( $settings['list'] as $item ) : ?>
+				            <li class="item-avatar" data-index="<?php echo esc_attr( $i ); ?>">
+					            <?php echo wp_get_attachment_image( $item['list_avatar']['id'], 'full' ); ?>
+				            </li>
 
-                        <div class="item text-center">
-                            <div class="avatar">
-                                <?php echo wp_get_attachment_image( $item['list_avatar']['id'], array( '105', '105' ) ); ?>
-                            </div>
+			            <?php $i++; endforeach; ?>
+		            </ul>
+	            </div>
 
-                            <h5 class="name">
-                                <?php echo esc_html( $item['list_name'] ); ?>
-                            </h5>
+                <div class="element-testimonial-text">
+                    <ul class="list-text">
+	                    <?php foreach ( $settings['list'] as $item ) : ?>
 
-                            <p class="item-content">
-                                <?php echo wp_kses_post( $item['list_content'] ); ?>
-                            </p>
-                        </div>
+                            <li class="item-text" data-index="<?php echo esc_attr( $j ); ?>">
+                                <h5 class="name">
+		                            <?php echo esc_html( $item['list_name'] ); ?>
+                                </h5>
 
-                    <?php endforeach; ?>
+                                <p class="item-content">
+		                            <?php echo wp_kses_post( $item['list_content'] ); ?>
+                                </p>
+                            </li>
+
+	                    <?php $j++; endforeach; ?>
+                    </ul>
                 </div>
-
             <?php endif; ?>
 
 		</div>

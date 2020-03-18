@@ -64,7 +64,7 @@ function nhakhoa_register_front_end() {
 	wp_enqueue_style( 'nhakhoa-fonts', nhakhoa_fonts_url(), array(), null );
 
 	/* Start main Css */
-	wp_enqueue_style( 'nhakhoa-library', get_theme_file_uri( '/css/library.min.css' ), array(), '' );
+	wp_enqueue_style( 'nhakhoa-library', get_theme_file_uri( '/css/library/minify/library.min.css' ), array(), '' );
 	/* End main Css */
 
     /* Start main Css */
@@ -90,7 +90,7 @@ function nhakhoa_register_front_end() {
 	wp_enqueue_script( 'html5', get_theme_file_uri( '/js/html5.js' ), array(), '3.7.3' );
 	wp_script_add_data( 'html5', 'conditional', 'lt IE 9' );
 
-	wp_enqueue_script( 'nhakhoa-main', get_theme_file_uri( '/js/main.min.js' ), array('jquery'), '', true );
+	wp_enqueue_script( 'nhakhoa-main', get_theme_file_uri( '/js/library/minify/library.min.js' ), array('jquery'), '', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

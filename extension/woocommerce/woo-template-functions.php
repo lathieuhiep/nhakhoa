@@ -404,7 +404,30 @@ if ( !function_exists( 'nhakhoa_woo_before_single_product_summary_open_warp' ) )
 
     function nhakhoa_woo_before_single_product_summary_open_warp() {
 
+	    global $product;
+	    $review_count = $product->get_review_count();
     ?>
+
+        <div class="site-shop-single__top d-flex align-items-center">
+            <?php
+            woocommerce_template_single_title();
+
+            if ( $review_count > 0 ) :
+                woocommerce_template_single_rating();
+            else:
+            ?>
+
+            <div class="no-rating">
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+            </div>
+
+            <?php endif; ?>
+
+        </div>
 
         <div class="site-shop-single__warp">
 
@@ -474,6 +497,55 @@ if ( ! function_exists( 'nhakhoa_woo_before_single_product_summary_close' ) ) :
     }
 
 endif;
+
+/* Start out of stock product */
+function nhakhoa_out_of_stock() {
+
+	$nhakhoa_post_id      = get_the_ID();
+	$nhakhoa_stock_status = get_post_meta( $nhakhoa_post_id, '_stock_status',true );
+
+	if ( $nhakhoa_stock_status == 'outofstock' ) {
+		return true;
+	} else {
+		return false;
+	}
+
+}
+/* End out of stock product */
+
+/* Start check in stock product */
+if ( ! function_exists( 'nhakhoa_check_in_stock_product' ) ):
+
+	function nhakhoa_check_in_stock_product() {
+		if ( !nhakhoa_out_of_stock() ) :
+
+?>
+        <span class="tzProductInStock">
+            <i class="fa fa-check-square-o"></i>
+            <?php esc_html_e( 'In Stock', 'maniva-meetup' ); ?>
+        </span>
+<?php
+		endif;
+	}
+
+endif;
+/* End check in stock product */
+
+function nhakhoa_woocommerce_custom_single_price() {
+//    global $product;
+//	var_dump( wc_get_stock_html( $product  ) );
+	?>
+
+    <div class="price-single-box d-flex align-items-center">
+        <p class="text">
+            <?php esc_html_e( 'Giá: ', 'nhakhoa' ); ?>
+        </p>
+
+        <?php woocommerce_template_single_price(); ?>
+    </div>
+
+<?php
+}
 
 /*
 * change sale flash text
