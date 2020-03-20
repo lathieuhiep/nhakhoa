@@ -430,6 +430,7 @@ if ( !function_exists( 'nhakhoa_woo_before_single_product_summary_open_warp' ) )
         </div>
 
         <div class="site-shop-single__warp">
+            <div class="row">
 
     <?php
 
@@ -447,9 +448,58 @@ if ( !function_exists( 'nhakhoa_woo_after_single_product_summary_close_warp' ) )
      */
 
     function nhakhoa_woo_after_single_product_summary_close_warp() {
+	    global $nhakhoa_options;
 
+	    $text_uu_dai    =   $nhakhoa_options['nhakhoa_shop_single_text_uu_dai'];
+	    $list_uu_dai    =   $nhakhoa_options['nhakhoa_shop_single_list_uu_dai'];
+
+	    $product_meta_bao_hanh      =   rwmb_meta( 'product_meta_bao_hanh' );
+	    $product_meta_link_bao_hanh =   rwmb_meta( 'product_meta_link_bao_hanh' );
     ?>
 
+                <div class="single-box-bao-hanh">
+                    <div class="top box-bao-hanh d-flex">
+                        <figure class="icon-image">
+                            <img src="<?php echo esc_url( get_theme_file_uri( '/images/certificate.jpg' ) ); ?>" alt="bảo hành">
+                        </figure>
+
+                        <div class="title-bh">
+                            <?php
+                            echo esc_html( $product_meta_bao_hanh );
+
+                            if ( !empty( $product_meta_link_bao_hanh ) ) :
+
+                            ?>
+
+                            <a href="<?php echo esc_url( get_page_link( $product_meta_link_bao_hanh[0] ) ); ?>">
+                                <?php esc_html_e( '(chính sách bảo hành)', 'nhakhoa' ); ?>
+                            </a>
+
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <?php if ( !empty( $list_uu_dai ) ): ?>
+
+                        <div class="uu-dai box-bao-hanh">
+                            <h3 class="title-uu-dai">
+                                <?php echo esc_html( $text_uu_dai ); ?>
+                            </h3>
+
+                            <ul>
+                                <?php foreach ( $list_uu_dai as $item ): ?>
+
+                                <li>
+                                    <?php echo esc_html( $item ); ?>
+                                </li>
+
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+
+                    <?php endif; ?>
+                </div>
+            </div>
         </div><!-- .site-shop-single__warp -->
 
     <?php
@@ -520,10 +570,13 @@ if ( ! function_exists( 'nhakhoa_check_in_stock_product' ) ):
 		if ( !nhakhoa_out_of_stock() ) :
 
 ?>
-        <span class="tzProductInStock">
-            <i class="fa fa-check-square-o"></i>
-            <?php esc_html_e( 'In Stock', 'maniva-meetup' ); ?>
-        </span>
+        <div class="stock-product-box">
+            <?php esc_html_e( 'Tình trạng: ', 'nhakhoa' ); ?>
+
+            <span class="product-stock-text">
+                <?php esc_html_e( 'Còn hàng', 'nhakhoa' ); ?>
+            </span>
+        </div>
 <?php
 		endif;
 	}
@@ -532,9 +585,9 @@ endif;
 /* End check in stock product */
 
 function nhakhoa_woocommerce_custom_single_price() {
-//    global $product;
-//	var_dump( wc_get_stock_html( $product  ) );
-	?>
+
+	$product_meta_km = rwmb_meta( 'product_meta_km' );
+?>
 
     <div class="price-single-box d-flex align-items-center">
         <p class="text">
@@ -544,7 +597,62 @@ function nhakhoa_woocommerce_custom_single_price() {
         <?php woocommerce_template_single_price(); ?>
     </div>
 
+    <?php nhakhoa_check_in_stock_product(); ?>
+
+    <div class="price-single-ship d-flex align-items-center">
+        <figure class="item-img">
+            <img src="<?php echo esc_url( get_theme_file_uri( '/images/icon-ship-product.png' ) ); ?>" alt="ship toàn quốc">
+        </figure>
+
+        <h3 class="item-box-title">
+            <?php esc_html_e( 'Ship hàng toàn quốc', 'nhakhoa' ); ?>
+        </h3>
+    </div>
+
+    <?php if ( !empty( $product_meta_km ) ) : ?>
+
+        <div class="product-single-khuyen-mai">
+            <h4 class="title-km">
+                <i class="fas fa-gift"></i>
+                <?php esc_html_e( ' khuyến mãi:', 'nhakhoa' ); ?>
+            </h4>
+
+            <ul class="list-km">
+	            <?php foreach ( $product_meta_km as $item ) : ?>
+
+                <li class="item-km">
+                    <strong>
+                        <?php echo esc_html( $item['name'] ); ?>
+                    </strong>
+
+	                <?php echo esc_html( $item['time'] ); ?>
+                </li>
+
+	            <?php endforeach; ?>
+            </ul>
+        </div>
+
+    <?php endif; ?>
+
 <?php
+
+}
+
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'nhakhoa_woo_change_text_add_to_cart_single' );
+function nhakhoa_woo_change_text_add_to_cart_single() {
+
+?>
+
+    <strong>
+        <?php esc_html_e( 'Mua Ngay', 'nhakhoa' ); ?>
+    </strong>
+
+    <span>
+        <?php esc_html_e( 'Giao hàng tận nơi hoặc nhận tại showroom', 'nhakhoa' ); ?>
+    </span>
+
+<?php
+
 }
 
 /*
@@ -585,16 +693,50 @@ function nhakhoa_woo_custom_html_rating() {
 	if ( $rating_count > 0 ) :
 ?>
 
-    <div class="woocommerce">
-        <div class="woocommerce-product-rating">
-		    <?php echo wc_get_rating_html( $average, $rating_count ); ?>
+        <div class="woocommerce">
+            <div class="woocommerce-product-rating">
+                <?php echo wc_get_rating_html( $average, $rating_count ); ?>
 
-            <a href="<?php the_permalink(); ?>" class="woocommerce-review-link" rel="nofollow">
-			    <?php echo esc_html( $review_count ) . ' '; esc_html_e( 'đánh giá', 'nhakhoa' ); ?>
-            </a>
+                <a href="<?php the_permalink(); ?>" class="woocommerce-review-link" rel="nofollow">
+                    <?php echo esc_html( $review_count ) . ' '; esc_html_e( 'đánh giá', 'nhakhoa' ); ?>
+                </a>
+            </div>
         </div>
-    </div>
+
+    <?php else: ?>
+
+        <div class="no-rating">
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+        </div>
 
 <?php
     endif;
+}
+
+/* Lien he */
+function nhakhoa_woo_single_lien_he() {
+
+	global $nhakhoa_options;
+
+	$phone    =   $nhakhoa_options['nhakhoa_shop_single_phone'];
+
+?>
+
+    <div class="phone-buy-product">
+        <a href="tel:<?php echo esc_attr( $phone ); ?>">
+            <i class="fas fa-phone"></i>
+            <?php esc_html_e( 'Liên hệ', 'nhakhoa' ); ?>
+
+            <span>
+                <?php echo esc_html( $phone ); ?>
+            </span>
+        </a>
+    </div>
+
+<?php
+
 }

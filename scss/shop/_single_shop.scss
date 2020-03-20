@@ -20,9 +20,9 @@
       }
     }
     .site-shop-single__warp {
-      margin: 0 -15px 30px;
-      @include flexbox();
-      @include flex-flow(row wrap);
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid $border-color;
 
       span {
         &.onsale {
@@ -40,12 +40,110 @@
         color: $color-title;
       }
     }
+    .stock-product-box {
+      color: $color-title;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 10px;
+
+      span {
+        color: #e21b1b;
+      }
+    }
+    .price-single-ship {
+      margin-bottom: 20px;
+      border: 1px solid #c2d8bd;
+      background-color: #e8f2e5;
+
+      .item-img {
+        padding: 5px 15px;
+        margin-right: 10px;
+        border-right: 1px solid #C2D8BD;
+      }
+      .item-box-title {
+        margin: 0;
+        font-size: 14px;
+        color: #1d9000;
+        text-transform: uppercase;
+      }
+    }
+    .product-single-khuyen-mai {
+      overflow: hidden;
+      margin-bottom: 30px;
+      border: 1px solid $border-color;
+      @include border-radius(4px);
+
+      .title-km {
+        font-size: 16px;
+        text-transform: uppercase;
+        padding: 10px;
+        margin: 0;
+        border-bottom: 1px solid $border-color;
+        background-color: #F4F4F4;
+
+        i {
+          color: #ff0000;
+          font-size: 18px;
+          margin-right: 5px;
+        }
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 10px 10px 20px;
+        counter-reset: number;
+
+        li {
+          color: $color-title;
+          counter-increment: number;
+          margin-bottom: 10px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+          &:before {
+            display: inline-block;
+            margin-right: 5px;
+            content: counter(number);
+            width: 18px;
+            height: 18px;
+            line-height: 19px;
+            text-align: center;
+            color: #ffffff;
+            font-size: 11px;
+            background-color: #399f20;
+            @include border-radius(50%);
+          }
+          strong {
+            color: #ff0000;
+          }
+        }
+      }
+    }
     div {
       &.product {
         .site-shop-single__gallery-box {
-          width: 50%;
+          width: 42%;
           padding: 0 15px;
           position: relative;
+
+          .flex-viewport {
+            margin-bottom: 15px;
+          }
+          .flex-control-thumbs {
+            margin: 0 -5px;
+
+            li {
+              padding: 0 5px;
+              margin-bottom: 10px;
+
+              img {
+                padding: 10px;
+                border: 1px solid $border-color;
+                @include border-radius(4px);
+              }
+            }
+          }
         }
         div {
           &.images {
@@ -55,9 +153,64 @@
           }
           &.summary {
             float: none;
-            width: 50%;
+            width: 35.126%;
             padding: 0 15px;
             margin: 0;
+          }
+        }
+        .single-box-bao-hanh {
+          width: 22.538%;
+          padding-top: 20px;
+
+          .box-bao-hanh {
+            margin-bottom: 20px;
+            padding: 17px 12px 16px 12px;
+            border: 1px solid $border-color;
+            @include border-radius(4px);
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+            .icon-image {
+              margin-right: 10px;
+              width: 12px;
+              @include flex(0 0 auto);
+            }
+            .title-bh {
+              font-size: 15px;
+              color: $color-title;
+
+              a {
+                color: $color-link;
+              }
+            }
+            .title-uu-dai {
+              font-size: 16px;
+              text-align: center;
+              padding-bottom: 15px;
+              margin-bottom: 15px;
+              border-bottom: 1px solid $border-color;
+            }
+          }
+          .uu-dai {
+            ul {
+              list-style: none;
+              margin: 0;
+              padding: 0;
+
+              li {
+                font-size: 15px;
+
+                &:before {
+                  content: "\f00c";
+                  font-family: "Font Awesome 5 Free";
+                  font-weight: 900;
+                  font-size: 16px;
+                  color: $color-link;
+                  margin-right: 5px;
+                }
+              }
+            }
           }
         }
         .product_title {
@@ -105,17 +258,38 @@
         form {
           &.cart {
             margin: 0 0 10px;
+            @include flexbox();
 
             .quantity {
+              display: none;
+              width: 50px;
+              @include flex(0 0 auto);
+
               input {
-                padding: 5px 0;
+                padding: 0;
                 border: 1px solid #eeeeee;
               }
             }
             .single_add_to_cart_button {
-              background-color: $background-hover;
+              text-align: center;
+              background-color: $background-primary;
               width: auto;
-              padding: 10px 15px;
+              padding: 12px 15px;
+              @include flex(1);
+              @include transition(all 0.4s ease-in-out);
+
+              strong {
+                display: block;
+                font-size: 16px;
+                text-transform: uppercase;
+                margin-bottom: 8px;
+              }
+              span {
+                display: block;
+              }
+              &:hover {
+                background-color: $background-hover;
+              }
             }
           }
         }
@@ -134,6 +308,32 @@
         a {
           display: inline-block;
           font-weight: 400;
+        }
+      }
+    }
+    .phone-buy-product {
+      text-align: center;
+      padding: 12px;
+      border: 1px solid $border-color;
+      @include border-radius(4px);
+
+      i {
+        color: $color-link;
+        margin-right: 5px;
+      }
+      span {
+        display: inline-block;
+        color: $color-link;
+      }
+    }
+    .related {
+      &.products {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $border-color;
+
+        h2 {
+          font-size: 22px;
         }
       }
     }

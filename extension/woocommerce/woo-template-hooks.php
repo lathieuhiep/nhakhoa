@@ -36,6 +36,11 @@ remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_pr
 
 remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+
+add_action( 'woocommerce_after_shop_loop_item_title', 'nhakhoa_woo_custom_html_rating', 5 );
+
 add_action( 'nhakhoa_woo_shopping_cart', 'nhakhoa_get_cart', 5 );
 
 add_action( 'nhakhoa_woo_button_quick_view', 'nhakhoa_button_quick_view', 5 );
@@ -74,6 +79,7 @@ add_action( 'woocommerce_after_main_content', 'nhakhoa_popup_quick_view_product'
  * @see nhakhoa_woo_after_single_product_summary_close_warp()
  * @see nhakhoa_woo_after_single_product()
  * @see nhakhoa_woocommerce_custom_single_price()
+ * @see nhakhoa_woo_single_lien_he()
  *
  */
 
@@ -82,6 +88,10 @@ remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_pr
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 
 add_action( 'woocommerce_before_single_product', 'nhakhoa_woo_before_single_product', 5 );
 
@@ -95,3 +105,7 @@ add_action( 'woocommerce_after_single_product_summary', 'nhakhoa_woo_after_singl
 add_action( 'woocommerce_after_single_product', 'nhakhoa_woo_after_single_product', 30 );
 
 add_action( 'woocommerce_single_product_summary', 'nhakhoa_woocommerce_custom_single_price', 10 );
+
+add_action( 'woocommerce_single_product_summary', 'nhakhoa_woo_single_lien_he', 40 );
+
+add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 5 );

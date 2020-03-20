@@ -536,6 +536,36 @@ Redux::setSection( $nhakhoa_opt_name, array(
         ),
     )
 ));
+
+// Single shop
+Redux::setSection( $nhakhoa_opt_name, array(
+	'title'             =>  esc_html__( 'Single', 'nhakhoa' ),
+	'id'                =>  'nhakhoa_shop_single',
+	'customizer_width'  =>  '400px',
+	'subsection'        =>  true,
+	'fields'            =>  array(
+
+		array(
+			'id'        =>  'nhakhoa_shop_single_phone',
+			'type'      =>  'text',
+			'title'     =>  esc_html__( 'Phone', 'nhakhoa' ),
+			'default'   =>  '0917.798.731',
+		),
+
+		array(
+			'id'        =>  'nhakhoa_shop_single_text_uu_dai',
+			'type'      =>  'text',
+			'title'     =>  esc_html__( 'Ưu đãi', 'nhakhoa' ),
+			'default'   =>  'MUA HÀNG TẠI PHÚC HẠNH NGUYỄN ĐỂ ĐƯỢC',
+		),
+
+		array(
+			'id'        =>  'nhakhoa_shop_single_list_uu_dai',
+			'type'      =>  'multi_text',
+		)
+
+	)
+));
 /* End Shop */
 
 /* Start Typography Options */

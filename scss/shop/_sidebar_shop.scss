@@ -24,5 +24,134 @@ section {
         }
       }
     }
+    &.widget_product_categories {
+      .widget-title {
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+      .product-categories {
+        > li {
+          &.current-cat,
+          &.current-cat-parent {
+            > a {
+              color: #ffffff;
+              background-color: $background-primary;
+            }
+            .subcate-icon {
+              color: #ffffff;
+            }
+          }
+          > a {
+            color: $color-title;
+            text-transform: uppercase;
+            font-weight: 700;
+            background-color: #F0F0F0;
+          }
+          &.current-cat-parent {
+            ul {
+              display: block;
+            }
+          }
+        }
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        > li {
+          margin-bottom: 3px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+        li {
+          position: relative;
+          a {
+            font-size: 14px;
+            display: block;
+            padding: 16px 15px;
+          }
+          .subcate-icon {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            top: 18px;
+            right: 15px;
+            z-index: 2;
+            line-height: initial;
+            padding: 0;
+            border: none;
+            cursor: pointer;
+
+            &:before {
+              content: "\f067";
+              font-family: "Font Awesome 5 Free";
+              font-weight: 900;
+              font-size: 11px;
+            }
+            &.active {
+              &:before {
+                content: "\f068";
+              }
+            }
+          }
+          ul {
+            display: none;
+
+            li {
+              border-bottom: 1px solid $border-color;
+
+              &.current-cat {
+                a {
+                  color: $color-title;
+                  font-weight: 700;
+                }
+              }
+              a {
+                text-transform: capitalize;
+
+                &:hover {
+                  color: $color-title;
+                  font-weight: 700;
+                }
+              }
+            }
+          }
+          .btn {
+            position: absolute;
+            top: 16px;
+            right: 15px;
+            z-index: 2;
+            line-height: initial;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+
+            &:active {
+              background-color: transparent;
+            }
+            &:focus {
+              box-shadow: none;
+            }
+            i {
+              color: $color-title;
+              font-size: 11px;
+            }
+            &.collapsed {
+              .fa-minus {
+                display: none;
+              }
+            }
+            &:not(.collapsed) {
+              .fa-plus {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
